@@ -1,8 +1,9 @@
 #!/bin/zsh
 export NVM_DIR="$HOME/.nvm"
+export NVM_SCRIPTS_DIR=${NVM_SCRIPTS_DIR:-$NVM_DIR}
 function load_nvm() {
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+    [ -s "$NVM_SCRIPTS_DIR/nvm.sh" ] && . "$NVM_SCRIPTS_DIR/nvm.sh" --no-use
+    [ -s "$NVM_SCRIPTS_DIR/bash_completion" ] && . "$NVM_SCRIPTS_DIR/bash_completion"
 
     if [ ! -z "$AUTO_LOAD_NVMRC_FILES" ] && [ "$AUTO_LOAD_NVMRC_FILES" = true ]
     then

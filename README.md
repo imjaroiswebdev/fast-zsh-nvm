@@ -1,5 +1,6 @@
 # Fast-ZSH-NVM
 
+
 ## Overview
 
 A ZSH plugin to initialize [NVM](https://github.com/nvm-sh/nvm) quickly when a new terminal opens.
@@ -48,15 +49,27 @@ zgen load allanjamesvestal/fast-zsh-nvm
 Update your `.zshrc` file with the following two lines:
 
 ```sh
-zplug mafredri/zsh-async, from:github
-zplug allanjamesvestal/fast-zsh-nvm, from:github
+zplug "mafredri/zsh-async", from:github
+zplug "allanjamesvestal/fast-zsh-nvm", from:github
 ```
 
 
 ## Configuration
 
-`fast-zsh-nvm` has two configuration options. Each can be triggered by setting the corresponding environment variable to `true`.
+`fast-zsh-nvm` has three configuration options. Each can be triggered by setting the corresponding environment variable to `true`.
 
 `AUTO_LOAD_NVMRC_FILES` listens every time you change directories. If the new directory has an `.nvmrc` file, this option will automatically switch to the correct node verson for that folder.
 
 `LOAD_NVMRC_ON_INIT` extends the plugin to also run that auto-loading behavior just after the terminal session starts. This is disabled by default, as it adds significantly to the initial load time if your starting directory contains a `.nvmrc` file.
+
+`NVM_SCRIPTS_DIR` in case that `nvm` isn't located at `NVM_DIR` then is possible to use this variable to set the right location for *nvm*'s scripts. This is the case when installing nvm through `brew` which installs it i.e.: `/usr/local/opt/nvm/nvm.sh`.
+
+
+## Addtional Advice
+
+In order for this to work you may need to get rid of these lines that might already exists in your `.zshrc` configuration file.
+
+```sh
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+```
